@@ -16,12 +16,18 @@ from customers;
 
 --Q3.Which payment_type is used most, and what is its total payment_value?
 
-select * from order_payments;
-
 select payment_type,sum(payment_value)as total_payment,count(*)
 from order_payments
 group by payment_type 
 order by total_payment desc
 limit 1;
  
-select * from products
+--Q.4.How many reviews are there for each review_score (1 to 5)? What is the overall average score?
+select count(*),
+review_score ,
+round (avg(review_score ),2) avg_score
+from order_reviews
+where review_score between 1 and 5
+group by review_score 
+order by review_score desc
+
