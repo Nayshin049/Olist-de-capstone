@@ -29,5 +29,21 @@ round (avg(review_score ),2) avg_score
 from order_reviews
 where review_score between 1 and 5
 group by review_score 
-order by review_score desc
+order by review_score desc;
 
+--Q.5.Sellers by state: which states have more than 50 sellers?
+
+select count(*) as sellers_count,
+seller_state
+from sellers 
+group by seller_state
+having count(*)> 50 
+order by sellers_count desc;
+
+--Q.6.Average price and freight per order item, rounded to 2 decimals.
+
+select order_id,
+round (avg(price),2) avg_price,
+round (avg(freight_value),2) avg_freight
+from order_items
+group by order_id;
