@@ -1,6 +1,6 @@
---Q1.How many customers are there in each state? Show the top 5 states.
+set search_path to raw; 
 
-select * from customers;
+--Q1.How many customers are there in each state? Show the top 5 states.
 
 select count (*) customer,
 customer_state 
@@ -42,8 +42,11 @@ order by sellers_count desc;
 
 --Q.6.Average price and freight per order item, rounded to 2 decimals.
 
-select order_id,
+select order_item_id,
 round (avg(price),2) avg_price,
 round (avg(freight_value),2) avg_freight
 from order_items
-group by order_id;
+group by order_item_id;
+
+
+
