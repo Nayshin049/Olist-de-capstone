@@ -22,6 +22,13 @@ from orders o
 left join order_reviews r on 
 o.order_id = r.order_id
 where r.order_id is null;
+SET search_path TO raw;
+--Q1.Rewrite last week's Q5 (revenue vs payments per order) using two CTEs.
+
+SELECT * FROM customers
+--Q2.Sellers with no 1-star reviews at all — use NOT EXISTS.
+--Q3.Monthly revenue for delivered orders.
+--Q4.For each month, which product category earned the most delivered revenue?
 
 
 
@@ -78,6 +85,7 @@ inner join (select order_id,sum(payment_value)as total_payments from order_payme
 on oi.order_id = p.order_id 
 where ABS(p.total_payments - (oi.total_price+oi.total_freight)) >1
 order by difference desc;
+
 
 
 
